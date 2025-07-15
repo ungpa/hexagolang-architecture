@@ -13,6 +13,9 @@ var Module = fx.Options(
 )
 
 func NewEchoServer() *echo.Echo {
+	// e := echo.New()
+	// e.Pre(middleware.RemoveTrailingSlash()) // make the both api/v1/about and api/v1/about/ work cause we dont need to create double instance
+	// return e
 	return echo.New()
 }
 

@@ -14,9 +14,15 @@ func NewRouter(handler *Handler) *Router {
 
 func (r *Router) RegisterRoutes(e *echo.Echo) {
 	api := e.Group("/api/v1")
-	api.GET("/", echo.HandlerFunc(func(c echo.Context) error {
+	api.GET("", echo.HandlerFunc(func(c echo.Context) error {
 		return c.JSON(200, map[string]string{"message": "Hello, World!"})
 	}))
+	api.GET("/about", echo.HandlerFunc(func(c echo.Context) error {
+		return c.JSON(200, map[string]string{"message": "/about"})
+	}))
+	// api.GET("/about/", echo.HandlerFunc(func(c echo.Context) error {
+	// 	return c.JSON(200, map[string]string{"message": "/about/"})
+	// }))
 	api.POST("/analyze", r.handler.AnalyzeURLs)
 	api.GET("/meta-tags", r.handler.GetMetaTags)
 
